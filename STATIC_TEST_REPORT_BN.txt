@@ -1,0 +1,52 @@
+HOMELAND LOGISTICS V8 + V4 INTEGRATED RELEASE — STATIC TEST REPORT
+========================================================================
+
+PASS/FAIL CHECKS
+PASS  index.html: HTML parsed — title=HOMELAND LOGISTICS | Cloud Operations Portal V8
+PASS  index.html: duplicate IDs — 78 unique IDs
+PASS  index.html: inline script 1 syntax — node --check passed
+PASS  index.html: config.js loaded — relative config.js
+PASS  index.html: Supabase JS v2 loaded — CDN reference found
+PASS  public-tracking.html: HTML parsed — title=HOMELAND LOGISTICS | Customer Tracking
+PASS  public-tracking.html: duplicate IDs — 6 unique IDs
+PASS  public-tracking.html: inline script 1 syntax — node --check passed
+PASS  public-tracking.html: config.js loaded — relative config.js
+PASS  public-tracking.html: Supabase JS v2 loaded — CDN reference found
+PASS  Public portal calls V4 RPC — RPC reference
+PASS  Public portal requires V4 high-entropy ID — 32 hex suffix regex
+PASS  Public portal does not request sender_name — not present in public page source
+PASS  Public portal does not request recipient_name — not present in public page source
+PASS  Public portal does not request sender_phone — not present in public page source
+PASS  Public portal does not request recipient_phone — not present in public page source
+PASS  Public portal does not request delivery_address — not present in public page source
+PASS  Public portal does not request cod_amount — not present in public page source
+PASS  Public portal does not request driver_id — not present in public page source
+PASS  Public portal does not request signature_path — not present in public page source
+PASS  Public portal does not request photo_path — not present in public page source
+PASS  V1 creates core shipment and status-history tables — table definitions found
+PASS  V3 enforces POD for Delivered — Delivered restriction found
+PASS  V4 creates privacy-limited public RPC — RPC and grants found
+PASS  V4 RPC excludes sensitive columns — no sensitive fields in RPC definition
+PASS  V4 tracking ID high entropy — UUID suffix generator found
+PASS  Config template has empty placeholders — no secret or real key included
+PASS  Package file index.html — present
+PASS  Package file public-tracking.html — present
+PASS  Package file config.js — present
+PASS  Package file sql/01_SCHEMA_V1.sql — present
+PASS  Package file sql/02_MIGRATION_V2_DRIVER_RLS.sql — present
+PASS  Package file sql/03_MIGRATION_V3_PROOF_OF_DELIVERY.sql — present
+PASS  Package file sql/03_VERIFY_V3.sql — present
+PASS  Package file sql/04_MIGRATION_V4_PUBLIC_TRACKING.sql — present
+PASS  Package file sql/04_VERIFY_V4.sql — present
+PASS  Package file supabase/functions/admin-invite-driver/index.ts — present
+PASS  Package file supabase/config.toml — present
+PASS  Package file README_BN.txt — present
+
+TOTAL: 39 checks; 39 PASS; 0 FAIL.
+
+NOT TESTED / NOT CLAIMED
+-------------------------
+- No live Supabase SQL was executed.
+- No real Auth login, Storage upload/download, Edge Function invocation or email was tested.
+- No website hosting, DNS, HTTPS, browser-on-device or public traffic test was performed.
+- Static checks cannot prove PostgreSQL RLS or private Storage behaviour.

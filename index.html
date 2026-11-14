@@ -1,249 +1,362 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HOMELAND Logistics Smart ERP</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10243a">
+<title>HOMELAND LOGISTICS | Cloud Operations Portal V8</title>
 <style>
-:root{--navy:#10243a;--blue:#1769aa;--bg:#f1f5f9}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#172b40}
-header{background:var(--navy);color:white;padding:20px}
-header h2{margin:0 0 7px}
-nav{display:flex;gap:7px;flex-wrap:wrap;background:#fff;padding:12px}
-button{border:0;border-radius:6px;padding:11px 14px;background:var(--blue);color:white;cursor:pointer}
-nav button{background:#e5edf5;color:#123}
-nav button.active{background:var(--blue);color:white}
-main{padding:15px;max-width:1200px;margin:auto}
-.panel{background:white;padding:17px;border-radius:10px;margin-bottom:15px;box-shadow:0 2px 8px #0001}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
-.stat{background:#eaf3fc;padding:18px;border-radius:9px}
-.stat strong{display:block;font-size:25px;margin-top:8px;color:#1769aa}
-input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:6px;margin:6px 0 12px;font-size:15px}
-label{font-weight:bold;font-size:13px}
-.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
-table{width:100%;border-collapse:collapse;min-width:650px}
-th,td{padding:11px;border-bottom:1px solid #ddd;text-align:left;font-size:13px}
-th{background:var(--navy);color:white}
-.tablewrap{overflow-x:auto}
-.actions{display:flex;gap:5px}
-.del{background:#dc3545}
-.edit{background:#198754}
-.hidden{display:none}
-footer{text-align:center;padding:20px;color:#64748b}
+:root{--navy:#10243a;--blue:#1769aa;--bg:#f3f6fa;--line:#e1e8ef;--muted:#64748b;--green:#137a52;--red:#b42318;--amber:#98600b;--white:#fff}
+*{box-sizing:border-box}html{font-family:Arial,Helvetica,sans-serif}body{margin:0;background:var(--bg);color:#1d2b39;font-size:14px}.hidden{display:none!important}button,input,select,textarea{font:inherit}button{cursor:pointer}.login{min-height:100svh;display:grid;place-items:center;padding:18px}.panel{width:min(460px,100%);padding:25px;background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:0 12px 35px #10243a12}.logo{font-size:21px;font-weight:800;color:var(--navy)}.sub{font-size:10px;letter-spacing:2px;color:var(--muted);margin:5px 0 22px}.field{display:block;font-weight:700;font-size:12px;margin:13px 0 6px}input,select,textarea{width:100%;padding:11px;border:1px solid #d2dce6;border-radius:8px;background:#fff;color:#1d2b39;min-width:0}input:focus,select:focus,textarea:focus{outline:2px solid #1769aa33;border-color:var(--blue)}textarea{min-height:75px;resize:vertical}.btn{border:0;background:var(--blue);color:#fff;border-radius:8px;padding:10px 14px;font-weight:700}.btn.secondary{background:#eaf2f9;color:var(--blue)}.btn.danger{background:#fff0ef;color:var(--red)}.btn.full{width:100%;margin-top:16px}.btn:disabled{opacity:.5;cursor:not-allowed}.hint{font-size:11px;color:var(--muted);line-height:1.65;margin-top:14px}.portal-link{display:block;text-align:center;margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;color:var(--blue);text-decoration:none;font-size:12px;font-weight:700}.portal-link:hover{background:#f4f8fc}.error{font-size:12px;color:var(--red);min-height:18px;margin-top:7px}.app{min-height:100vh;display:none;flex-direction:row}.side{width:235px;flex:0 0 235px;background:var(--navy);color:#fff;padding:18px 13px}.brand{font-weight:800;line-height:1.45;margin:0 8px 23px}.brand small{display:block;font-size:10px;letter-spacing:2px;color:#a8bed0}.navlabel{font-size:10px;letter-spacing:1px;color:#9ab0c2;margin:18px 10px 8px}.nav button{width:100%;display:block;text-align:left;border:0;background:transparent;color:#dce7ef;padding:11px 12px;border-radius:8px;margin:3px 0}.nav button.active,.nav button:hover{background:#25435e;color:#fff}.main{flex:1;min-width:0}.top{min-height:64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 20px;position:sticky;top:0;z-index:3}.top strong{font-size:15px}.topright{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.muted{color:var(--muted)}.lang,.logout{border:1px solid var(--line);background:#fff;padding:8px 11px;border-radius:8px}.content{max-width:1500px;margin:auto;padding:22px}.page{display:none}.page.show{display:block}h1{font-size:23px;margin:0 0 7px}h2{font-size:19px;margin:0 0 12px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:15px}.metric{font-size:25px;font-weight:800;margin-top:8px}.notice{background:#fff8e8;border:1px solid #f0dfb9;color:#77520e;padding:11px;border-radius:8px;font-size:12px;line-height:1.55;margin:13px 0}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:17px 0 12px}.search{max-width:340px}.tablewrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:11px}table{border-collapse:collapse;width:100%;min-width:850px}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);font-size:12px;vertical-align:middle}th{background:#f9fbfd;color:var(--muted);font-weight:700}.tag{display:inline-block;padding:5px 8px;border-radius:20px;background:#e8f5ee;color:var(--green);font-size:11px;white-space:nowrap}.tag.pending{background:#fff4df;color:var(--amber)}.tag.failed{background:#fff0ef;color:var(--red)}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}.wide{grid-column:1/-1}.formcard{max-width:900px}.row{display:flex;align-items:center;gap:8px}.row>*{min-width:0}.actions{display:flex;gap:6px;flex-wrap:wrap}.small{font-size:11px}.modalback{display:none;position:fixed;inset:0;background:#07172788;z-index:10;place-items:center;padding:15px}.modalback.open{display:grid}.modal{width:min(650px,100%);max-height:90svh;overflow:auto;background:#fff;border-radius:13px;padding:20px}.modalhead{display:flex;align-items:center;justify-content:space-between;gap:10px}.history{border-left:2px solid #dce5ed;margin:12px 0 0 7px;padding-left:16px}.historyitem{margin:0 0 13px;position:relative}.historyitem:before{content:"";position:absolute;left:-22px;top:3px;width:9px;height:9px;background:var(--blue);border-radius:50%}.empty{padding:20px;text-align:center;color:var(--muted)}.footer-note{font-size:11px;color:var(--muted);line-height:1.6;margin-top:18px}.driver-form{max-width:750px}.driver-row{display:grid;grid-template-columns:1.3fr 1fr auto;gap:8px;align-items:center}.status-note{font-size:12px;color:var(--muted);margin-top:7px}.filter{max-width:190px}.assign-modal{width:min(500px,100%)}.pod-modal{width:min(680px,100%)}.signature-canvas{display:block;width:100%;height:auto;aspect-ratio:3/1;background:#fff;border:1px dashed #9aa9b8;border-radius:9px;touch-action:none;cursor:crosshair}.pod-help{font-size:11px;color:var(--muted);line-height:1.6;margin:6px 0 10px}.pod-proof-image{display:block;max-width:min(100%,420px);max-height:280px;object-fit:contain;border:1px solid var(--line);border-radius:8px;margin:8px 0;background:#fff}@media print{body{background:#fff}.print-sheet{font-family:Arial,sans-serif;color:#111;padding:24px}.print-sheet h1{font-size:22px}.print-sheet table{min-width:0;border-collapse:collapse;width:100%}.print-sheet td,.print-sheet th{border:1px solid #bbb;padding:9px;text-align:left}.print-sheet .tracking{font-size:22px;font-weight:800;letter-spacing:1px}.print-sheet .small{color:#555}}
+[dir=rtl] .side{order:2}[dir=rtl] .main{order:1}[dir=rtl] .nav button,[dir=rtl] th,[dir=rtl] td{text-align:right}[dir=rtl] .history{border-left:0;border-right:2px solid #dce5ed;margin:12px 7px 0 0;padding:0 16px 0 0}[dir=rtl] .historyitem:before{left:auto;right:-22px}
+@media(max-width:900px){.side{width:195px;flex-basis:195px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:650px){.app{flex-direction:column}.side{width:100%;padding:11px 10px}.brand{margin:0 7px 10px}.navlabel{display:none}.nav{display:flex;gap:4px;overflow-x:auto;padding-bottom:2px}.nav button{width:auto;white-space:nowrap;flex:0 0 auto;padding:10px}.top{padding:9px 12px}.content{padding:13px}.cards{gap:8px}.card{padding:12px}.formgrid{grid-template-columns:1fr}.wide{grid-column:auto}.metric{font-size:21px}.driver-row{grid-template-columns:1fr}.topright{justify-content:flex-end}.tablewrap{margin-inline:-2px}}
 </style>
 </head>
 <body>
-<header>
-<h2>HOMELAND LOGISTICS</h2>
-SMART ERP MANAGEMENT SYSTEM
-<p>Moving the world. Moving your business.</p>
-</header>
-
-<nav id="nav">
-<button class="active" onclick="show('Dashboard',this)">Dashboard</button>
-<button onclick="show('Customers',this)">Customers</button>
-<button onclick="show('Employees',this)">Employees</button>
-<button onclick="show('Vehicles',this)">Vehicles</button>
-<button onclick="show('Deliveries',this)">Deliveries</button>
-<button onclick="show('Finance',this)">Finance</button>
-<button onclick="show('Settings',this)">Settings</button>
-</nav>
-
-<main>
-<section id="Dashboard" class="page">
-<div class="panel"><h2>Company Dashboard</h2>
-<div class="cards">
-<div class="stat">Customers<strong id="sCustomers">0</strong></div>
-<div class="stat">Employees<strong id="sEmployees">0</strong></div>
-<div class="stat">Vehicles<strong id="sVehicles">0</strong></div>
-<div class="stat">Deliveries<strong id="sDeliveries">0</strong></div>
-<div class="stat">Total Income<strong id="sIncome">0</strong></div>
-<div class="stat">Total Expense<strong id="sExpense">0</strong></div>
+<div id="login" class="login"><div class="panel">
+  <div class="row" style="justify-content:space-between"><div class="logo">HOMELAND LOGISTICS</div><button type="button" class="lang" id="loginLangBtn" onclick="toggleLang()">العربية</button></div><div class="sub">SERVICE COMPANY · CLOUD OPERATIONS PORTAL · V8</div>
+  <h2 data-en="Connect to company system" data-ar="الاتصال بنظام الشركة">Connect to company system</h2>
+  <div class="notice" data-en="Enter your Supabase project URL and publishable/anon key, then sign in with your company account. Never enter a service_role or secret key here." data-ar="أدخل رابط مشروع Supabase ومفتاح النشر أو anon، ثم سجّل الدخول بحساب الشركة. لا تُدخل مطلقاً مفتاح service_role أو أي مفتاح سري هنا.">Enter your Supabase project URL and publishable/anon key, then sign in with your company account. Never enter a service_role or secret key here.</div>
+  <label class="field" for="projectUrl" data-en="Supabase Project URL" data-ar="رابط مشروع Supabase">Supabase Project URL</label><input id="projectUrl" type="url" inputmode="url" placeholder="https://your-project.supabase.co" autocomplete="url">
+  <label class="field" for="anonKey" data-en="Publishable / anon key" data-ar="مفتاح النشر / anon">Publishable / anon key</label><input id="anonKey" type="password" autocomplete="off" placeholder="sb_publishable_... or legacy anon key">
+  <label class="field" for="email" data-en="Company email" data-ar="البريد الإلكتروني للشركة">Company email</label><input id="email" type="email" autocomplete="username" placeholder="name@company.com">
+  <label class="field" for="password" data-en="Password" data-ar="كلمة المرور">Password</label><input id="password" type="password" autocomplete="current-password">
+  <label class="row small" style="margin-top:12px"><input id="rememberConfig" type="checkbox" style="width:auto" checked><span data-en="Remember project URL and public key on this device" data-ar="تذكر رابط المشروع والمفتاح العام على هذا الجهاز">Remember project URL and public key on this device</span></label>
+  <button class="btn full" onclick="connectAndLogin()" data-en="Connect & Sign In" data-ar="اتصال وتسجيل الدخول">Connect & Sign In</button>
+  <button type="button" class="lang" style="margin-top:9px;width:100%" onclick="requestPasswordReset()" data-en="Forgot password?" data-ar="هل نسيت كلمة المرور؟">Forgot password?</button>
+  <div id="loginError" class="error" role="alert"></div>
+  <div id="passwordSetup" class="card hidden" style="margin-top:14px">
+    <h2 data-en="Set your password" data-ar="تعيين كلمة المرور">Set your password</h2>
+    <p class="hint" data-en="Choose a new password of at least 12 characters." data-ar="اختر كلمة مرور جديدة لا تقل عن 12 حرفاً.">Choose a new password of at least 12 characters.</p>
+    <label class="field" for="newPassword" data-en="New password" data-ar="كلمة المرور الجديدة">New password</label><input id="newPassword" type="password" autocomplete="new-password" minlength="12">
+    <label class="field" for="confirmPassword" data-en="Confirm password" data-ar="تأكيد كلمة المرور">Confirm password</label><input id="confirmPassword" type="password" autocomplete="new-password" minlength="12">
+    <button class="btn full" type="button" onclick="finishPasswordSetup()" data-en="Save password" data-ar="حفظ كلمة المرور">Save password</button>
+    <div id="passwordSetupError" class="error" role="alert"></div>
+  </div>
+  <div class="hint" data-en="Requires the HOMELAND Supabase SQL schema and an Auth user linked to hls_profiles. Driver invitations are sent by a server-side Edge Function; never enter a secret key here." data-ar="يتطلب مخطط SQL الخاص بـ HOMELAND وربط مستخدم المصادقة بجدول hls_profiles. تُرسل دعوات السائقين عبر Edge Function على الخادم؛ لا تُدخل مفتاحاً سرياً هنا.">Requires the HOMELAND Supabase SQL schema and an Auth user linked to hls_profiles. Driver invitations are sent by a server-side Edge Function; never enter a secret key here.</div>
+  <a class="portal-link" href="public-tracking.html" target="_blank" rel="noopener" data-en="Open Customer Tracking Portal" data-ar="فتح بوابة تتبع العملاء">Open Customer Tracking Portal</a>
 </div></div>
-<div class="panel"><h3>Financial Balance</h3>
-<h2 id="balance">0 SAR</h2>
-<p>Income minus Expense</p></div>
-</section>
-
-<div id="workspace"></div>
-</main>
-<footer>© 2026 HOMELAND LOGISTICS SERVICE COMPANY</footer>
-
-<script>
-const modules={
-Customers:['Customer Name','Phone','Company','Address'],
-Employees:['Employee Name','Phone','Role','Join Date'],
-Vehicles:['Vehicle Number','Vehicle Type','Driver','Status'],
-Deliveries:['Delivery Date','From','To','Customer','Status'],
-Finance:['Date','Type','Amount','Description']
-};
-
-let data={};
-Object.keys(modules).forEach(k=>{
-try{data[k]=JSON.parse(localStorage.getItem('home_'+k))||[]}
-catch(e){data[k]=[]}
-});
-
-let current='',editing=-1;
-
-function save(k){
-localStorage.setItem('home_'+k,JSON.stringify(data[k]));
-}
-
-function show(page,btn){
-document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));
-document.getElementById('workspace').innerHTML='';
-document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
-if(btn)btn.classList.add('active');
-
-if(page==='Dashboard'){
-document.getElementById('Dashboard').classList.remove('hidden');
-dashboard();
-return;
-}
-if(page==='Settings'){settings();return}
-current=page;
-editing=-1;
-render();
-}
-
-function dashboard(){
-['Customers','Employees','Vehicles','Deliveries'].forEach(k=>{
-document.getElementById('s'+k).textContent=data[k].length;
-});
-let income=0,expense=0;
-data.Finance.forEach(x=>{
-if(x.Type==='Income')income+=Number(x.Amount)||0;
-else expense+=Number(x.Amount)||0;
-});
-document.getElementById('sIncome').textContent=income.toFixed(2);
-document.getElementById('sExpense').textContent=expense.toFixed(2);
-document.getElementById('balance').textContent=(income-expense).toFixed(2)+' SAR';
-}
-
-function render(){
-let fields=modules[current];
-let html='<div class="panel"><h2>'+current+' Management</h2>';
-html+='<form onsubmit="add(event)"><div class="formgrid">';
-fields.forEach(f=>{
-html+='<div><label>'+f+'</label>';
-if(f==='Type')html+='<select id="f'+f+'" required><option>Income</option><option>Expense</option></select>';
-else if(f==='Status')html+='<select id="f'+f+'"><option>Pending</option><option>In Progress</option><option>Completed</option><option>Available</option><option>Active</option></select>';
-else html+='<input id="f'+f+'" '+(f==='Amount'?'type="number" step="0.01"':'')+' placeholder="Enter '+f+'" required>';
-html+='</div>';
-});
-html+='</div><button type="submit">'+(editing>=0?'Update Record':'Save Record')+'</button> <button type="button" onclick="cancelEdit()" style="background:#64748b">Clear</button></form></div>';
-html+='<div class="panel"><h3>All '+current+'</h3>';
-html+='<input id="search" placeholder="Search records..." oninput="filterRows()">';
-html+='<button onclick="exportCSV()">Export Excel CSV</button> <button onclick="window.print()">Print / PDF</button>';
-html+='<div class="tablewrap"><table id="records"><thead><tr>';
-fields.forEach(f=>html+='<th>'+f+'</th>');
-html+='<th>Actions</th></tr></thead><tbody>';
-data[current].forEach((r,i)=>html+=row(r,i));
-html+='</tbody></table></div></div>';
-document.getElementById('workspace').innerHTML=html;
-}
-
-function row(r,i){
-let html='<tr>';
-modules[current].forEach(f=>html+='<td>'+escapeHTML(r[f]??'')+'</td>');
-html+='<td><div class="actions"><button class="edit" onclick="editRow('+i+')">Edit</button><button class="del" onclick="deleteRow('+i+')">Delete</button></div></td></tr>';
-return html;
-}
-
-function escapeHTML(value){
-return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-function add(e){
-e.preventDefault();
-let obj={};
-modules[current].forEach(f=>obj[f]=document.getElementById('f'+f).value.trim());
-if(editing>=0)data[current][editing]=obj;
-else data[current].push(obj);
-save(current);
-editing=-1;
-render();
-dashboard();
-}
-
-function editRow(i){
-editing=i;
-render();
-modules[current].forEach(f=>{
-document.getElementById('f'+f).value=data[current][i][f]||'';
-});
-document.querySelector('form').scrollIntoView({behavior:'smooth'});
-}
-
-function deleteRow(i){
-if(confirm('Delete this record?')){
-data[current].splice(i,1);
-save(current);
-render();
-dashboard();
-}
-}
-
-function cancelEdit(){
-editing=-1;
-render();
-}
-
-function filterRows(){
-let q=document.getElementById('search').value.toLowerCase();
-document.querySelectorAll('#records tbody tr').forEach(tr=>{
-tr.style.display=tr.innerText.toLowerCase().includes(q)?'':'none';
-});
-}
-
-function exportCSV(){
-let fields=modules[current];
-let rows=[fields,...data[current].map(r=>fields.map(f=>r[f]||''))];
-let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');
-let blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
-let a=document.createElement('a');
-a.href=URL.createObjectURL(blob);
-a.download=current+'_Report.csv';
-a.click();
-URL.revokeObjectURL(a.href);
-}
-
-function settings(){
-document.getElementById('workspace').innerHTML=`
-<div class="panel"><h2>Company Settings</h2>
-<label>Company Name</label><input id="company" value="${escapeHTML(localStorage.getItem('companyName')||'HOMELAND LOGISTICS SERVICE COMPANY')}">
-<label>Mobile / WhatsApp</label><input id="phone" value="${escapeHTML(localStorage.getItem('companyPhone')||'+8801861969040')}">
-<label>Email</label><input id="email" value="${escapeHTML(localStorage.getItem('companyEmail')||'amtexbd778@gmail.com')}">
-<button onclick="saveSettings()">Save Settings</button>
+<div id="app" class="app">
+  <aside class="side"><div class="brand">HOMELAND LOGISTICS<small>SERVICE COMPANY</small></div><div class="navlabel" data-en="OPERATIONS" data-ar="العمليات">OPERATIONS</div><nav class="nav">
+    <button class="active" data-page="dashboard" data-en="▦ Dashboard" data-ar="▦ لوحة التحكم">▦ Dashboard</button>
+    <button data-page="shipments" data-en="□ Shipments" data-ar="□ الشحنات">□ Shipments</button>
+    <button class="admin-only" data-page="new" data-en="+ New Shipment" data-ar="+ شحنة جديدة">+ New Shipment</button>
+    <button data-page="tracking" data-en="⌕ Track Parcel" data-ar="⌕ تتبع شحنة">⌕ Track Parcel</button>
+    <button class="admin-only" data-page="drivers" data-en="♙ Drivers" data-ar="♙ السائقون">♙ Drivers</button>
+    <button class="admin-only" data-page="reports" data-en="▥ Reports" data-ar="▥ التقارير">▥ Reports</button>
+  </nav></aside>
+  <main class="main"><header class="top"><strong id="pageTitle">Dashboard</strong><div class="topright"><span id="who" class="muted">Not signed in</span><span class="tag">SUPABASE</span><span id="syncState" class="small muted">Not synced</span><button class="logout" onclick="reloadData()" data-en="Refresh" data-ar="تحديث">Refresh</button><button class="lang" id="langBtn" onclick="toggleLang()">العربية</button><button class="logout" onclick="logout()" data-en="Log out" data-ar="تسجيل الخروج">Log out</button></div></header>
+  <div class="content">
+    <section id="dashboard" class="page show"><h1 data-en="Dashboard Overview" data-ar="نظرة عامة">Dashboard Overview</h1><div class="muted" data-en="Parcel operations · Saudi Arabia · Currency SAR" data-ar="عمليات الطرود · المملكة العربية السعودية · العملة ريال سعودي">Parcel operations · Saudi Arabia · Currency SAR</div>
+      <div class="cards"><div class="card"><span data-en="My / Total Shipments" data-ar="شحناتي / إجمالي الشحنات">My / Total Shipments</span><div class="metric" id="totalCount">0</div></div><div class="card"><span data-en="Delivered" data-ar="تم التسليم">Delivered</span><div class="metric" id="deliveredCount">0</div></div><div class="card"><span data-en="In Transit" data-ar="قيد النقل">In Transit</span><div class="metric" id="transitCount">0</div></div><div class="card"><span data-en="Needs Action" data-ar="تحتاج إلى إجراء">Needs Action</span><div class="metric" id="pendingCount">0</div></div></div>
+      <div class="notice" data-en="Connected Supabase workspace: shipment and driver data are read from the configured project. Access depends on the installed database policies." data-ar="مساحة عمل Supabase متصلة: تتم قراءة بيانات الشحنات والسائقين من المشروع المحدد. ويعتمد الوصول على سياسات قاعدة البيانات المثبتة.">Connected Supabase workspace: shipment and driver data are read from the configured project. Access depends on the installed database policies.</div>
+      <div class="card"><b data-en="Next step" data-ar="الخطوة التالية">Next step</b><p class="muted" data-en="Drivers complete delivery with a recipient signature; administrators can review private proof records." data-ar="يكمل السائقون التسليم بتوقيع المستلم؛ ويمكن للمديرين مراجعة إثباتات التسليم الخاصة.">Drivers complete delivery with a recipient signature; administrators can review private proof records.</p><button id="dashboardNew" class="btn admin-only" onclick="showPage('new')" data-en="+ Create shipment" data-ar="+ إنشاء شحنة">+ Create shipment</button><button class="btn secondary" onclick="showPage('shipments')" data-en="View shipments" data-ar="عرض الشحنات">View shipments</button></div>
+    </section>
+    <section id="shipments" class="page"><h1 data-en="Shipment Management" data-ar="إدارة الشحنات">Shipment Management</h1><div class="toolbar"><input id="shipmentSearch" class="search" placeholder="Search tracking, customer, city..." oninput="renderShipments()"><select id="statusFilter" class="filter" onchange="renderShipments()"><option value="" data-en="All statuses" data-ar="كل الحالات">All statuses</option><option value="Booked">Booked / تم الحجز</option><option value="Picked Up">Picked Up / تم الاستلام</option><option value="In Transit">In Transit / قيد النقل</option><option value="Out for Delivery">Out for Delivery / خرج للتسليم</option><option value="Delivered">Delivered / تم التسليم</option><option value="Delivery Failed">Delivery Failed / فشل التسليم</option><option value="Returned">Returned / تم الإرجاع</option></select><select id="driverFilter" class="filter admin-only" onchange="renderShipments()"><option value="" data-en="All drivers" data-ar="كل السائقين">All drivers</option></select><button class="btn admin-only" onclick="showPage('new')" data-en="+ New Shipment" data-ar="+ شحنة جديدة">+ New Shipment</button></div><div class="tablewrap"><table><thead><tr><th data-en="Tracking ID" data-ar="رقم التتبع">Tracking ID</th><th data-en="Recipient" data-ar="المستلم">Recipient</th><th data-en="Destination" data-ar="الوجهة">Destination</th><th data-en="Driver" data-ar="السائق">Driver</th><th data-en="Status" data-ar="الحالة">Status</th><th data-en="Actions" data-ar="الإجراءات">Actions</th></tr></thead><tbody id="shipmentRows"></tbody></table></div><div id="noShipments" class="empty hidden" data-en="No shipments found." data-ar="لم يتم العثور على شحنات.">No shipments found.</div></section>
+    <section id="new" class="page admin-only"><h1 data-en="Create New Shipment" data-ar="إنشاء شحنة جديدة">Create New Shipment</h1><p class="muted" data-en="Required fields are marked *. Tracking IDs are generated automatically." data-ar="الحقول المطلوبة محددة بعلامة *. يتم إنشاء أرقام التتبع تلقائياً.">Required fields are marked *. Tracking IDs are generated automatically.</p>
+      <div class="card formcard"><form id="shipmentForm" onsubmit="createShipment(event)"><div class="formgrid">
+        <div><label class="field" for="sender" data-en="Sender Name *" data-ar="اسم المرسل *">Sender Name *</label><input id="sender" required maxlength="80" autocomplete="off"></div>
+        <div><label class="field" for="senderPhone" data-en="Sender Phone *" data-ar="هاتف المرسل *">Sender Phone *</label><input id="senderPhone" required maxlength="20" inputmode="tel" placeholder="05XXXXXXXX or +9665XXXXXXXX"></div>
+        <div><label class="field" for="recipient" data-en="Recipient Name *" data-ar="اسم المستلم *">Recipient Name *</label><input id="recipient" required maxlength="80" autocomplete="off"></div>
+        <div><label class="field" for="recipientPhone" data-en="Recipient Phone *" data-ar="هاتف المستلم *">Recipient Phone *</label><input id="recipientPhone" required maxlength="20" inputmode="tel" placeholder="05XXXXXXXX or +9665XXXXXXXX"></div>
+        <div><label class="field" for="city" data-en="Destination City *" data-ar="مدينة الوجهة *">Destination City *</label><input id="city" required maxlength="60" placeholder="Riyadh, Jeddah, Dammam..."></div>
+        <div><label class="field" for="driver" data-en="Assign Driver" data-ar="تعيين سائق">Assign Driver</label><select id="driver"><option value="">Unassigned</option></select></div>
+        <div><label class="field" for="parcelType" data-en="Parcel Type" data-ar="نوع الطرد">Parcel Type</label><select id="parcelType"><option value="Package">Package</option><option value="Document">Document</option><option value="Fragile">Fragile</option><option value="Other">Other</option></select></div>
+        <div><label class="field" for="cod" data-en="Cash on Delivery (SAR)" data-ar="الدفع عند الاستلام (ريال)">Cash on Delivery (SAR)</label><input id="cod" type="number" min="0" max="1000000" step="0.01" value="0" inputmode="decimal"></div>
+        <div class="wide"><label class="field" for="address" data-en="Delivery Address / Notes" data-ar="عنوان التسليم / ملاحظات">Delivery Address / Notes</label><textarea id="address" maxlength="300"></textarea></div>
+      </div><div id="formError" class="error" role="alert"></div><button class="btn full" type="submit" data-en="Create Shipment & Tracking ID" data-ar="إنشاء الشحنة ورقم التتبع">Create Shipment & Tracking ID</button></form><div id="createdResult" class="notice hidden" aria-live="polite"></div></div>
+    </section>
+    <section id="tracking" class="page"><h1 data-en="Track a Parcel" data-ar="تتبع طرد">Track a Parcel</h1><p class="muted" data-en="Search saved records by tracking ID. Employee accounts can only track assigned deliveries." data-ar="ابحث في السجلات المحفوظة برقم التتبع. يمكن لحسابات الموظفين تتبع عمليات التسليم المسندة إليهم فقط.">Search saved records by tracking ID. Employee accounts can only track assigned deliveries.</p><div class="card" style="max-width:700px"><div class="row"><input id="trackInput" placeholder="HLS-YYMMDD-XXXXXX"><button class="btn" onclick="trackParcel()" data-en="Track" data-ar="تتبع">Track</button></div><div id="trackResult" style="margin-top:15px" aria-live="polite"></div></div></section>
+    <section id="drivers" class="page admin-only"><h1 data-en="Driver Directory" data-ar="دليل السائقين">Driver Directory</h1><p class="muted" data-en="Invite a driver by email. The server creates the driver record, Auth invitation and restricted driver profile." data-ar="ادعُ السائق عبر البريد الإلكتروني. ينشئ الخادم سجل السائق ودعوة المصادقة وملف السائق محدود الصلاحيات.">Invite a driver by email. The server creates the driver record, Auth invitation and restricted driver profile.</p><div class="card driver-form"><h2 data-en="Invite a Driver" data-ar="دعوة سائق">Invite a Driver</h2><form id="driverForm" onsubmit="inviteDriver(event)"><div class="formgrid"><div><label class="field" for="driverName" data-en="Driver name" data-ar="اسم السائق">Driver name</label><input id="driverName" required maxlength="70" autocomplete="name" placeholder="Driver display name"></div><div><label class="field" for="driverPhone" data-en="Phone (optional)" data-ar="الهاتف (اختياري)">Phone (optional)</label><input id="driverPhone" maxlength="20" inputmode="tel" placeholder="+966 5X XXX XXXX"></div><div class="wide"><label class="field" for="driverEmail" data-en="Driver email" data-ar="البريد الإلكتروني للسائق">Driver email</label><input id="driverEmail" type="email" required maxlength="254" autocomplete="email" placeholder="driver@example.com"></div><div class="wide"><button class="btn" type="submit" data-en="Create Driver & Send Invitation" data-ar="إنشاء السائق وإرسال الدعوة">Create Driver & Send Invitation</button></div></div><div id="driverError" class="error" role="alert"></div><div id="driverSuccess" class="hint" role="status"></div></form><p class="hint" data-en="Requires the deployed admin-invite-driver Edge Function and configured Auth email delivery. The secret key stays on the server." data-ar="يتطلب نشر Edge Function باسم admin-invite-driver وإعداد إرسال رسائل المصادقة. يبقى المفتاح السري على الخادم.">Requires the deployed admin-invite-driver Edge Function and configured Auth email delivery. The secret key stays on the server.</p></div><div class="toolbar"><b data-en="Registered Drivers" data-ar="السائقون المسجلون">Registered Drivers</b></div><div class="tablewrap"><table><thead><tr><th data-en="Driver ID" data-ar="معرّف السائق">Driver ID</th><th data-en="Name" data-ar="الاسم">Name</th><th data-en="Email" data-ar="البريد الإلكتروني">Email</th><th data-en="Phone" data-ar="الهاتف">Phone</th><th data-en="Assigned Shipments" data-ar="الشحنات المسندة">Assigned Shipments</th><th data-en="Status" data-ar="الحالة">Status</th><th data-en="Action" data-ar="الإجراء">Action</th></tr></thead><tbody id="driverRows"></tbody></table></div></section>
+    <section id="reports" class="page admin-only"><h1 data-en="Shipment Reports" data-ar="تقارير الشحنات">Shipment Reports</h1><div class="card"><p><span data-en="Total shipments:" data-ar="إجمالي الشحنات:">Total shipments:</span> <b id="reportTotal">0</b></p><p><span data-en="Delivered:" data-ar="تم التسليم:">Delivered:</span> <b id="reportDelivered">0</b></p><p><span data-en="Other statuses:" data-ar="حالات أخرى:">Other statuses:</span> <b id="reportOther">0</b></p><button class="btn secondary" onclick="exportCSV()" data-en="Export CSV" data-ar="تصدير CSV">Export CSV</button></div></section>
+    <div class="footer-note" data-en="V8 cloud-connected front end with private Proof of Delivery. Requires V1 + V2 + V3 SQL migrations, Supabase Auth and correct RLS/Storage policies. Public customer tracking is an optional V4 add-on in public-tracking.html and requires the V4 SQL migration. No live GPS, SMS API, payment gateway or automatic backup is included." data-ar="واجهة V8 متصلة بالسحابة مع إثبات تسليم خاص. تتطلب ترحيلات SQL من V1 إلى V3 ومستخدمي Supabase Auth وسياسات RLS وStorage صحيحة. تتوفر بوابة تتبع العملاء كإضافة اختيارية V4 في ملف public-tracking.html وتتطلب ترحيل SQL V4. لا يشمل النظام GPS مباشراً أو SMS أو بوابة دفع أو نسخاً احتياطياً تلقائياً.">V8 cloud-connected front end with private Proof of Delivery. Requires V1 + V2 + V3 SQL migrations, Supabase Auth and correct RLS/Storage policies. POD images are stored in a private bucket and signed links expire after 5 minutes. No live GPS, SMS API, payment gateway, public customer tracking or automatic backup is included.</div>
+  </div></main>
 </div>
-<div class="panel"><h3>Data Management</h3>
-<p>Export individual module data using the CSV button in each section.</p>
-<button class="del" onclick="clearAll()">Delete All Records</button>
-</div>`;
+<div id="statusModal" class="modalback"><div class="modal"><div class="modalhead"><h2 data-en="Update Shipment Status" data-ar="تحديث حالة الشحنة">Update Shipment Status</h2><button class="logout" onclick="closeModal()" aria-label="Close">✕</button></div><p id="modalTracking" class="muted"></p><label class="field" for="newStatus" data-en="Next Status" data-ar="الحالة التالية">Next Status</label><select id="newStatus"></select><div class="status-note" id="statusGuidance"></div><label class="field" for="statusNote" data-en="Update Note" data-ar="ملاحظة التحديث">Update Note</label><input id="statusNote" maxlength="160" placeholder="Required for failed or returned delivery"><button class="btn full" onclick="saveStatus()" data-en="Save Status" data-ar="حفظ الحالة">Save Status</button><div id="statusError" class="error" role="alert"></div></div></div>
+<div id="detailModal" class="modalback"><div class="modal"><div class="modalhead"><h2 data-en="Shipment Details" data-ar="تفاصيل الشحنة">Shipment Details</h2><button class="logout" onclick="closeDetails()" aria-label="Close">✕</button></div><div id="detailContent"></div></div></div>
+<div id="assignModal" class="modalback"><div class="modal assign-modal"><div class="modalhead"><h2 data-en="Reassign Driver" data-ar="إعادة تعيين السائق">Reassign Driver</h2><button class="logout" onclick="closeAssign()" aria-label="Close">✕</button></div><p id="assignTracking" class="muted"></p><label class="field" for="assignDriver" data-en="Select active driver" data-ar="اختر سائقاً نشطاً">Select active driver</label><select id="assignDriver"></select><div id="assignError" class="error" role="alert"></div><button class="btn full" onclick="saveAssignment()" data-en="Save Assignment" data-ar="حفظ التعيين">Save Assignment</button></div></div>
+<div id="podModal" class="modalback"><div class="modal pod-modal"><div class="modalhead"><h2 data-en="Proof of Delivery" data-ar="إثبات التسليم">Proof of Delivery</h2><button class="logout" onclick="closePOD()" aria-label="Close">✕</button></div><p id="podTracking" class="muted"></p><form id="podForm" onsubmit="submitPOD(event)"><label class="field" for="podReceivedBy" data-en="Received by (recipient name) *" data-ar="استلمها (اسم المستلم) *">Received by (recipient name) *</label><input id="podReceivedBy" required minlength="2" maxlength="80" autocomplete="off"><label class="field" for="signaturePad" data-en="Recipient signature *" data-ar="توقيع المستلم *">Recipient signature *</label><canvas id="signaturePad" class="signature-canvas" width="900" height="300" aria-label="Recipient signature pad"></canvas><div class="row" style="justify-content:space-between;margin-top:7px"><span class="pod-help" data-en="Ask the recipient to sign on the screen. A signature is required. This is an on-screen acknowledgement, not a certified digital signature." data-ar="اطلب من المستلم التوقيع على الشاشة. التوقيع مطلوب. هذا إقرار على الشاشة وليس توقيعاً رقمياً معتمداً.">Ask the recipient to sign on the screen. A signature is required. This is an on-screen acknowledgement, not a certified digital signature.</span><button class="btn secondary" type="button" onclick="clearSignature()" data-en="Clear signature" data-ar="مسح التوقيع">Clear signature</button></div><label class="field" for="podPhoto" data-en="Delivery photo (optional)" data-ar="صورة التسليم (اختياري)">Delivery photo (optional)</label><input id="podPhoto" type="file" accept="image/jpeg,image/png,image/webp" capture="environment"><div class="pod-help" data-en="Image only · maximum 6 MB. Do not photograph IDs or unrelated people." data-ar="صور فقط · الحد الأقصى 6 ميجابايت. لا تصوّر الهويات أو أشخاصاً غير معنيين.">Image only · maximum 6 MB. Do not photograph IDs or unrelated people.</div><label class="field" for="podNote" data-en="Delivery note (optional)" data-ar="ملاحظة التسليم (اختياري)">Delivery note (optional)</label><textarea id="podNote" maxlength="300"></textarea><div id="podError" class="error" role="alert"></div><button id="podSubmitBtn" class="btn full" type="submit" data-en="Save Proof & Complete Delivery" data-ar="حفظ الإثبات وإتمام التسليم">Save Proof & Complete Delivery</button></form></div></div>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+'use strict';
+const CONFIG_KEY='hls_supabase_config_v1';
+const STATUS_FLOW={'Booked':['Picked Up'],'Picked Up':['In Transit'],'In Transit':['Out for Delivery','Delivery Failed','Returned'],'Out for Delivery':['Delivery Failed'],'Delivery Failed':['Out for Delivery','Returned'],'Delivered':[],'Returned':[]};
+const STATUS_AR={'Booked':'تم الحجز','Picked Up':'تم الاستلام','In Transit':'قيد النقل','Out for Delivery':'خرج للتسليم','Delivered':'تم التسليم','Delivery Failed':'فشل التسليم','Returned':'تم الإرجاع'};
+let sb=null, roleNow=null, language='en', editingId=null, currentUser=null, currentDriverId=null, shipments=[], drivers=[], podShipmentId=null, signatureHasInk=false, signatureDrawing=false;
+const POD_BUCKET='hls-delivery-proof';
+function tr(en,ar){return language==='ar'?ar:en;}
+function val(id){return (document.getElementById(id)?.value||'').trim();}
+function esc(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function phoneValid(v){const digits=String(v||'').replace(/[\s()+-]/g,'');return /^[0-9]{9,15}$/.test(digits);}
+function setText(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+function setError(id,msg){setText(id,msg||'');}
+function getConfig(){const cfg=window.HLS_SUPABASE_CONFIG||{};return {url:(val('projectUrl')||cfg.url||'').replace(/\/$/,''),key:val('anonKey')||cfg.publishableKey||''};}
+function isSecretKey(key){if(/^sb_secret_/i.test(key))return true;const parts=key.split('.');if(parts.length===3){try{let body=parts[1].replace(/-/g,'+').replace(/_/g,'/');body+='='.repeat((4-body.length%4)%4);const payload=JSON.parse(atob(body));return payload.role==='service_role'||payload.role==='supabase_admin';}catch(e){return false;}}return false;}
+function initClient(){
+  const c=getConfig();
+  if(c.url)document.getElementById('projectUrl').value=c.url;
+  if(c.key)document.getElementById('anonKey').value=c.key;
+  let parsedUrl;try{parsedUrl=new URL(c.url);}catch(e){throw new Error(tr('Enter a valid Supabase project URL.','أدخل رابط مشروع Supabase صالحاً.'));}
+  if(parsedUrl.protocol!=='https:'||parsedUrl.username||parsedUrl.password||parsedUrl.search||parsedUrl.hash) throw new Error(tr('Use a valid HTTPS Supabase URL without credentials or query parameters.','استخدم رابط Supabase صالحاً عبر HTTPS دون بيانات اعتماد أو معاملات إضافية.'));
+  if(!c.key||c.key.length<20||isSecretKey(c.key)) throw new Error(tr('Enter a publishable/anon key only. Secret and service_role keys are blocked.','أدخل مفتاح النشر أو anon فقط. تم حظر المفاتيح السرية ومفتاح service_role.'));
+  if(!window.supabase||typeof window.supabase.createClient!=='function') throw new Error(tr('Supabase client library did not load. Check internet access and reload.','لم يتم تحميل مكتبة Supabase. تحقق من الإنترنت ثم أعد التحميل.'));
+  sb=window.supabase.createClient(c.url,c.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  if(document.getElementById('rememberConfig').checked){localStorage.setItem(CONFIG_KEY,JSON.stringify(c));}else{localStorage.removeItem(CONFIG_KEY);}
+  return sb;
+}
+async function connectAndLogin(){
+  setError('loginError','');
+  try{
+    const client=initClient();
+    const email=val('email'),password=document.getElementById('password').value;
+    if(!email||!password) throw new Error(tr('Enter your company email and password.','أدخل البريد الإلكتروني للشركة وكلمة المرور.'));
+    const {data,error}=await client.auth.signInWithPassword({email,password});
+    if(error) throw error;
+    await bootstrapUser(data.user);
+  }catch(e){setError('loginError',friendlyError(e));}
+}
+function inviteOrRecoveryRedirect(kind){const u=new URL(window.location.href);u.search='';u.hash='';u.searchParams.set(kind,'1');return u.toString();}
+async function requestPasswordReset(){
+  setError('loginError','');
+  try{
+    if(!sb)initClient();
+    const email=val('email');if(!email)throw new Error(tr('Enter your company email first.','أدخل بريد الشركة الإلكتروني أولاً.'));
+    const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:inviteOrRecoveryRedirect('recovery')});
+    if(error)throw error;
+    setError('loginError',tr('If the account exists, a password-reset email has been requested. Check your inbox.','إذا كان الحساب موجوداً، فقد تم طلب رسالة إعادة تعيين كلمة المرور. تحقق من بريدك.'));
+  }catch(e){setError('loginError',friendlyError(e));}
+}
+function showPasswordSetup(){document.getElementById('passwordSetup').classList.remove('hidden');document.getElementById('password').value='';setError('loginError',tr('Invitation or recovery link verified. Set a new password to continue.','تم التحقق من رابط الدعوة أو الاستعادة. عيّن كلمة مرور جديدة للمتابعة.'));}
+async function finishPasswordSetup(){
+  setError('passwordSetupError','');const p=document.getElementById('newPassword').value,c=document.getElementById('confirmPassword').value;
+  if(p.length<12){setError('passwordSetupError',tr('Use at least 12 characters.','استخدم 12 حرفاً على الأقل.'));return;}
+  if(p!==c){setError('passwordSetupError',tr('Passwords do not match.','كلمتا المرور غير متطابقتين.'));return;}
+  try{
+    const {data,error}=await sb.auth.updateUser({password:p});if(error)throw error;
+    document.getElementById('passwordSetup').classList.add('hidden');document.getElementById('newPassword').value='';document.getElementById('confirmPassword').value='';
+    history.replaceState({},document.title,window.location.pathname);
+    const {data:sessionData,error:sessionError}=await sb.auth.getSession();if(sessionError)throw sessionError;
+    await bootstrapUser(data.user||sessionData.session?.user);
+  }catch(e){setError('passwordSetupError',friendlyError(e));}
+}
+function friendlyError(e){
+  const m=String(e?.message||e||'Unknown error');
+  if(/Invalid login credentials/i.test(m)) return tr('Email or password is incorrect.','البريد الإلكتروني أو كلمة المرور غير صحيحة.');
+  if(/Failed to fetch|NetworkError|fetch/i.test(m)) return tr('Could not reach Supabase. Check the project URL, key and internet connection.','تعذر الاتصال بـ Supabase. تحقق من رابط المشروع والمفتاح والإنترنت.');
+  return m;
+}
+async function bootstrapUser(user){
+  if(!sb) throw new Error('Supabase client is not initialized.');
+  const {data:profile,error}=await sb.from('hls_profiles').select('user_id,full_name,app_role,driver_id').eq('user_id',user.id).single();
+  if(error||!profile){await sb.auth.signOut();throw new Error(tr('This Auth user has no hls_profiles row. Ask the administrator to link the account.','لا يوجد سجل لهذا المستخدم في hls_profiles. اطلب من المدير ربط الحساب.'));}
+  if(!['admin','driver'].includes(profile.app_role)) throw new Error('Unsupported account role.');
+  roleNow=profile.app_role;currentUser=user;currentDriverId=profile.driver_id||null;
+  if(roleNow==='driver'&&!currentDriverId) throw new Error('Driver profile is missing its driver link.');
+  await loadDrivers();await loadShipments();
+  setText('syncState',tr('Updated: ','آخر تحديث: ')+new Date().toLocaleTimeString());
+  document.getElementById('login').style.display='none';document.getElementById('app').style.display='flex';
+  const driver=drivers.find(d=>d.id===currentDriverId);
+  document.getElementById('who').textContent=roleNow==='admin'?tr('Administrator · '+profile.full_name,'مدير النظام · '+profile.full_name):tr('Driver · '+(driver?.full_name||profile.full_name),'سائق · '+(driver?.full_name||profile.full_name));
+  document.querySelectorAll('.admin-only').forEach(e=>e.classList.toggle('hidden',roleNow!=='admin'));
+  renderDriverOptions();renderDriverFilter();showPage('dashboard');refresh();
+}
+async function restoreSession(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(CONFIG_KEY)||'null');
+    if(saved?.url&&saved?.key){document.getElementById('projectUrl').value=saved.url;document.getElementById('anonKey').value=saved.key;}
+    const cfg=window.HLS_SUPABASE_CONFIG||{};
+    if((saved?.url&&saved?.key)||(cfg.url&&cfg.publishableKey)){
+      initClient();const {data,error}=await sb.auth.getSession();if(error)throw error;
+      const params=new URLSearchParams(window.location.search),special=params.get('invite')==='1'||params.get('recovery')==='1';
+      if(special){if(data.session)showPasswordSetup();else setError('loginError',tr('The invitation/recovery link is invalid or expired. Ask the administrator to resend it.','رابط الدعوة أو الاستعادة غير صالح أو منتهي الصلاحية. اطلب من المدير إعادة إرساله.'));return;}
+      if(data.session)await bootstrapUser(data.session.user);
+    }
+  }catch(e){setError('loginError',friendlyError(e));}
+}
+async function logout(){try{if(sb)await sb.auth.signOut();}catch(e){}roleNow=null;currentUser=null;currentDriverId=null;shipments=[];drivers=[];document.getElementById('app').style.display='none';document.getElementById('login').style.display='grid';document.getElementById('password').value='';setError('loginError','');}
+function showPage(id){const el=document.getElementById(id);if(!el||(roleNow!=='admin'&&el.classList.contains('admin-only')))return;document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));el.classList.add('show');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.getElementById('pageTitle').textContent=el.querySelector('h1')?.textContent||id;if(id==='shipments')renderShipments();if(id==='drivers')renderDrivers();if(id==='reports')refresh();}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+async function loadDrivers(){
+  const {data,error}=await sb.from('hls_drivers').select('id,driver_code,full_name,email,phone,is_active').order('driver_code');
+  if(error)throw error;drivers=data||[];
+  if(roleNow==='driver'){const own=drivers.find(d=>d.id===currentDriverId);if(!own||!own.is_active){await sb.auth.signOut();roleNow=null;currentUser=null;currentDriverId=null;throw new Error(tr('This driver account is inactive or not linked to an active driver. Ask the administrator.','حساب السائق غير نشط أو غير مرتبط بسائق نشط. راجع المدير.'));}}
+}
+async function loadShipments(){
+  const columns='id,tracking_number,sender_name,sender_phone,recipient_name,recipient_phone,destination_city,delivery_address,parcel_type,cod_amount,status,driver_id,created_at,updated_at,hls_drivers(id,driver_code,full_name)';
+  const rows=[];let start=0;const pageSize=500;
+  while(true){
+    const {data,error}=await sb.from('hls_shipments').select(columns).order('created_at',{ascending:false}).range(start,start+pageSize-1);
+    if(error)throw error;
+    rows.push(...(data||[]));
+    if(!data||data.length<pageSize)break;
+    start+=pageSize;
+  }
+  shipments=rows.map(mapShipment);
+}
+function mapShipment(r){const d=r.hls_drivers||null;return {dbId:r.id,id:r.tracking_number,sender:r.sender_name,senderPhone:r.sender_phone,recipient:r.recipient_name,recipientPhone:r.recipient_phone,city:r.destination_city,address:r.delivery_address||'',driverId:r.driver_id||'',driver:d?.full_name||'Unassigned',driverCode:d?.driver_code||'',type:r.parcel_type,cod:Number(r.cod_amount||0),status:r.status,created:r.created_at,history:[],assignmentHistory:[]};}
+function visibleShipments(){return roleNow==='admin'?shipments:shipments.filter(s=>s.driverId===currentDriverId);}
+async function createShipment(e){
+  e.preventDefault();if(roleNow!=='admin')return;const err=document.getElementById('formError');err.textContent='';
+  const sender=val('sender'),recipient=val('recipient'),city=val('city'),sp=val('senderPhone'),rp=val('recipientPhone'),cod=Number(val('cod')||0),driverId=val('driver');
+  if(!sender||!recipient||!city){err.textContent=tr('Sender, recipient and destination city are required.','اسم المرسل والمستلم ومدينة الوجهة حقول مطلوبة.');return;}
+  if(!phoneValid(sp)||!phoneValid(rp)){err.textContent=tr('Enter valid phone numbers using 9–15 digits.','أدخل أرقام هواتف صحيحة تتكون من 9 إلى 15 رقماً.');return;}
+  if(!Number.isFinite(cod)||cod<0||cod>1000000){err.textContent=tr('COD must be between 0 and 1,000,000 SAR.','يجب أن تكون قيمة الدفع عند الاستلام بين 0 و1,000,000 ريال.');return;}
+  if(driverId&&!drivers.some(d=>d.id===driverId&&d.is_active)){err.textContent=tr('Select an active registered driver.','اختر سائقاً مسجلاً ونشطاً.');return;}
+  try{
+    const {data,error}=await sb.rpc('hls_create_shipment',{p_sender_name:sender,p_sender_phone:sp,p_recipient_name:recipient,p_recipient_phone:rp,p_destination_city:city,p_delivery_address:val('address')||null,p_parcel_type:val('parcelType'),p_cod_amount:cod,p_driver_id:driverId||null});
+    if(error)throw error;const result=Array.isArray(data)?data[0]:data;if(!result?.tracking_number)throw new Error('Shipment was created but no tracking number was returned.');
+    await loadShipments();e.target.reset();document.getElementById('cod').value='0';renderDriverOptions();const box=document.getElementById('createdResult');box.classList.remove('hidden');box.textContent=tr('Shipment created. Tracking ID: ','تم إنشاء الشحنة. رقم التتبع: ')+result.tracking_number+' ';const copy=document.createElement('button');copy.className='btn secondary';copy.type='button';copy.textContent=tr('Copy ID','نسخ الرقم');copy.addEventListener('click',()=>copyText(result.tracking_number));box.appendChild(copy);refresh();
+  }catch(ex){err.textContent=friendlyError(ex);}
+}
+function renderShipments(){
+  const q=(document.getElementById('shipmentSearch')?.value||'').toLowerCase(),status=document.getElementById('statusFilter')?.value||'',driverId=document.getElementById('driverFilter')?.value||'';
+  const a=visibleShipments().filter(x=>[x.id,x.sender,x.recipient,x.city,x.driver].join(' ').toLowerCase().includes(q)&&(!status||x.status===status)&&(roleNow!=='admin'||!driverId||x.driverId===driverId));
+  const body=document.getElementById('shipmentRows');body.innerHTML=a.map(x=>{const actions='<button class="btn secondary" onclick="showDetails(\''+esc(x.id)+'\')">'+tr('Details','التفاصيل')+'</button><button class="btn" onclick="openStatus(\''+esc(x.id)+'\')">'+tr('Update','تحديث')+'</button><button class="btn secondary" onclick="printShipment(\''+esc(x.id)+'\')">'+tr('Print','طباعة')+'</button><button class="btn secondary" onclick="shareWhatsApp(\''+esc(x.id)+'\')">WhatsApp</button>'+(roleNow==='driver'&&x.status==='Out for Delivery'?'<button class="btn" onclick="openPOD(\''+esc(x.id)+'\')">'+tr('Complete Delivery','إتمام التسليم')+'</button>':'')+(roleNow==='admin'?'<button class="btn secondary" onclick="openAssign(\''+esc(x.id)+'\')">'+tr('Reassign','إعادة تعيين')+'</button>':'');return '<tr><td><b>'+esc(x.id)+'</b></td><td>'+esc(x.recipient)+'</td><td>'+esc(x.city)+'</td><td>'+esc(x.driver)+'</td><td><span class="tag '+(x.status==='Delivered'?'':x.status==='Delivery Failed'||x.status==='Returned'?'failed':'pending')+'">'+esc(language==='ar'?(STATUS_AR[x.status]||x.status):x.status)+'</span></td><td><div class="actions">'+actions+'</div></td></tr>';}).join('');document.getElementById('noShipments').classList.toggle('hidden',a.length>0);
+}
+function canAccessShipment(s){return !!s&&(roleNow==='admin'||(roleNow==='driver'&&s.driverId===currentDriverId));}
+function findShipment(id){return shipments.find(s=>s.id===id);}
+function openStatus(id){const s=findShipment(id);if(!canAccessShipment(s))return;editingId=id;document.getElementById('modalTracking').textContent=id+' · '+tr('Current: ','الحالة الحالية: ')+(language==='ar'?(STATUS_AR[s.status]||s.status):s.status);const next=STATUS_FLOW[s.status]||[];const sel=document.getElementById('newStatus');sel.innerHTML=next.map(st=>'<option value="'+esc(st)+'">'+esc(language==='ar'?(STATUS_AR[st]||st):st)+'</option>').join('');sel.disabled=next.length===0;document.getElementById('statusGuidance').textContent=s.status==='Out for Delivery'?tr('To mark Delivered, use Complete Delivery and save the recipient signature.','لتعيين الحالة تم التسليم، استخدم إتمام التسليم واحفظ توقيع المستلم.'):next.length?tr('Choose the next permitted step in the delivery lifecycle.','اختر الخطوة التالية المسموح بها في دورة التسليم.'):tr('This shipment is closed. No further status updates are allowed.','تم إغلاق هذه الشحنة. لا يُسمح بمزيد من تحديثات الحالة.');document.getElementById('statusNote').value='';document.getElementById('statusError').textContent='';document.getElementById('statusModal').classList.add('open');}
+function closeModal(){document.getElementById('statusModal').classList.remove('open');editingId=null;}
+async function saveStatus(){const s=findShipment(editingId);if(!canAccessShipment(s))return;const next=document.getElementById('newStatus').value,note=val('statusNote');if(!(STATUS_FLOW[s.status]||[]).includes(next)){setError('statusError',tr('Invalid status transition.','انتقال حالة غير صالح.'));return;}if(['Delivery Failed','Returned'].includes(next)&&!note){setError('statusError',tr('A note is required for failed or returned deliveries.','الملاحظة مطلوبة عند فشل التسليم أو إرجاع الشحنة.'));return;}try{const {error}=await sb.rpc('hls_update_shipment_status',{p_shipment_id:s.dbId,p_new_status:next,p_note:note||null});if(error)throw error;closeModal();await loadShipments();renderShipments();refresh();}catch(e){setError('statusError',friendlyError(e));}}
+async function showDetails(id){
+  const s=findShipment(id);if(!canAccessShipment(s))return;
+  const c=document.getElementById('detailContent');
+  c.innerHTML='<p class="muted">'+tr('Loading history…','جارٍ تحميل السجل…')+'</p>';
+  document.getElementById('detailModal').classList.add('open');
+  try{
+    const [st,ah,pr]=await Promise.all([
+      sb.from('hls_shipment_status_history').select('old_status,new_status,note,created_at').eq('shipment_id',s.dbId).order('created_at',{ascending:true}),
+      sb.from('hls_driver_assignment_history').select('previous_driver_id,new_driver_id,note,created_at').eq('shipment_id',s.dbId).order('created_at',{ascending:true}),
+      sb.from('hls_delivery_proofs').select('received_by,recorded_by_name,delivery_note,signature_path,photo_path,delivered_at').eq('shipment_id',s.dbId).maybeSingle()
+    ]);
+    if(st.error)throw st.error;if(ah.error)throw ah.error;if(pr.error)throw pr.error;
+    const driverName=id=>drivers.find(d=>d.id===id)?.full_name||'Unassigned';
+    const history=st.data||[],assign=ah.data||[];
+    let proofHtml='';
+    if(pr.data){
+      const proof=pr.data;
+      let signatureUrl='',photoUrl='';
+      try{
+        const signed=await sb.storage.from(POD_BUCKET).createSignedUrl(proof.signature_path,300);
+        if(signed.error)throw signed.error;signatureUrl=signed.data?.signedUrl||'';
+        if(proof.photo_path){const photo=await sb.storage.from(POD_BUCKET).createSignedUrl(proof.photo_path,300);if(photo.error)throw photo.error;photoUrl=photo.data?.signedUrl||'';}
+      }catch(assetError){proofHtml='<p class="error">'+tr('POD metadata is available, but a private evidence file could not be opened. Check Storage RLS.','بيانات إثبات التسليم متاحة، لكن تعذر فتح ملف خاص. تحقق من سياسات Storage.')+' '+esc(friendlyError(assetError))+'</p>';}
+      proofHtml='<h3>'+tr('Proof of Delivery','إثبات التسليم')+'</h3><p><b>'+tr('Received by','استلمها')+':</b> '+esc(proof.received_by)+'</p><p><b>'+tr('Recorded by','سجله')+':</b> '+esc(proof.recorded_by_name)+'</p><p><b>'+tr('Delivered at','وقت التسليم')+':</b> '+esc(new Date(proof.delivered_at).toLocaleString())+'</p><p><b>'+tr('Delivery note','ملاحظة التسليم')+':</b> '+esc(proof.delivery_note||'—')+'</p>'+(signatureUrl?'<p><b>'+tr('Recipient signature','توقيع المستلم')+'</b><br><a href="'+esc(signatureUrl)+'" target="_blank" rel="noopener"><img class="pod-proof-image" src="'+esc(signatureUrl)+'" alt="Recipient signature"></a></p>':'')+(photoUrl?'<p><b>'+tr('Delivery photo','صورة التسليم')+'</b><br><a href="'+esc(photoUrl)+'" target="_blank" rel="noopener"><img class="pod-proof-image" src="'+esc(photoUrl)+'" alt="Delivery evidence photo"></a></p>':'')+proofHtml;
+    }
+    c.innerHTML='<h3>'+esc(s.id)+'</h3><p><b>'+tr('Sender','المرسل')+':</b> '+esc(s.sender)+' · '+esc(s.senderPhone)+'</p><p><b>'+tr('Recipient','المستلم')+':</b> '+esc(s.recipient)+' · '+esc(s.recipientPhone)+'</p><p><b>'+tr('Destination','الوجهة')+':</b> '+esc(s.city)+'</p><p><b>'+tr('Address / Notes','العنوان / الملاحظات')+':</b> '+esc(s.address||'—')+'</p><p><b>'+tr('Driver','السائق')+':</b> '+esc(s.driver)+'</p><p><b>'+tr('Parcel type','نوع الطرد')+':</b> '+esc(s.type)+' · <b>COD:</b> '+s.cod.toFixed(2)+' SAR</p><p><b>'+tr('Status','الحالة')+':</b> '+esc(language==='ar'?(STATUS_AR[s.status]||s.status):s.status)+'</p>'+proofHtml+'<h3>'+tr('Status history','سجل الحالات')+'</h3><div class="history">'+history.map(h=>'<div class="historyitem"><b>'+esc(language==='ar'?(STATUS_AR[h.new_status]||h.new_status):h.new_status)+'</b><div class="small muted">'+esc(new Date(h.created_at).toLocaleString())+'</div><div class="small">'+esc(h.note||'')+'</div></div>').join('')+'</div><h3>'+tr('Driver assignment history','سجل تعيين السائق')+'</h3><div class="history">'+assign.map(h=>'<div class="historyitem"><b>'+esc(driverName(h.new_driver_id))+'</b><div class="small muted">'+esc(new Date(h.created_at).toLocaleString())+'</div><div class="small">'+esc(h.note||'')+'</div></div>').join('')+'</div>';
+  }catch(e){c.innerHTML='<span class="error">'+esc(friendlyError(e))+'</span>';}
+}
+function openPOD(id){
+  if(roleNow!=='driver')return;
+  const shipment=findShipment(id);
+  if(!canAccessShipment(shipment)||shipment.status!=='Out for Delivery')return;
+  podShipmentId=id;
+  setText('podTracking',shipment.id+' · '+tr('Complete delivery for ','إتمام التسليم إلى ')+shipment.recipient);
+  document.getElementById('podReceivedBy').value=shipment.recipient||'';
+  document.getElementById('podNote').value='';
+  document.getElementById('podPhoto').value='';
+  setError('podError','');
+  clearSignature();
+  document.getElementById('podModal').classList.add('open');
+  initSignaturePad();
+}
+function closePOD(){document.getElementById('podModal').classList.remove('open');podShipmentId=null;}
+function initSignaturePad(){
+  const canvas=document.getElementById('signaturePad');
+  if(canvas.dataset.bound==='1')return;
+  const ctx=canvas.getContext('2d');
+  ctx.strokeStyle='#111827';ctx.lineWidth=6;ctx.lineCap='round';ctx.lineJoin='round';
+  const point=e=>{const r=canvas.getBoundingClientRect();return {x:(e.clientX-r.left)*(canvas.width/r.width),y:(e.clientY-r.top)*(canvas.height/r.height)};};
+  canvas.addEventListener('pointerdown',e=>{e.preventDefault();signatureDrawing=true;canvas.setPointerCapture(e.pointerId);const p=point(e);ctx.beginPath();ctx.moveTo(p.x,p.y);});
+  canvas.addEventListener('pointermove',e=>{if(!signatureDrawing)return;e.preventDefault();const p=point(e);ctx.lineTo(p.x,p.y);ctx.stroke();signatureHasInk=true;});
+  const finish=()=>{signatureDrawing=false;};
+  canvas.addEventListener('pointerup',finish);canvas.addEventListener('pointercancel',finish);canvas.addEventListener('lostpointercapture',finish);
+  canvas.dataset.bound='1';
+}
+function clearSignature(){
+  const canvas=document.getElementById('signaturePad');
+  if(canvas){const ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);}
+  signatureHasInk=false;signatureDrawing=false;
+}
+function signatureBlob(){
+  return new Promise((resolve,reject)=>{
+    const canvas=document.getElementById('signaturePad');
+    canvas.toBlob(blob=>blob?resolve(blob):reject(new Error(tr('Could not create signature image.','تعذر إنشاء صورة التوقيع.'))),'image/png');
+  });
+}
+function podFileId(){return (window.crypto&&crypto.randomUUID)?crypto.randomUUID():(Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,14));}
+async function submitPOD(e){
+  e.preventDefault();
+  if(roleNow!=='driver')return;
+  const shipment=findShipment(podShipmentId);
+  if(!canAccessShipment(shipment)||shipment.status!=='Out for Delivery')return;
+  const receivedBy=val('podReceivedBy'),note=val('podNote'),photo=document.getElementById('podPhoto').files[0]||null;
+  if(receivedBy.length<2||receivedBy.length>80){setError('podError',tr('Enter the recipient name (2–80 characters).','أدخل اسم المستلم (من حرفين إلى 80 حرفاً).'));return;}
+  if(!signatureHasInk){setError('podError',tr('Recipient signature is required.','توقيع المستلم مطلوب.'));return;}
+  if(note.length>300){setError('podError',tr('Delivery note must not exceed 300 characters.','يجب ألا تتجاوز ملاحظة التسليم 300 حرف.'));return;}
+  const allowedTypes=['image/jpeg','image/png','image/webp'];
+  if(photo&&(!allowedTypes.includes(photo.type)||photo.size>6*1024*1024||photo.size===0)){setError('podError',tr('Choose a valid JPG, PNG or WebP image no larger than 6 MB.','اختر صورة JPG أو PNG أو WebP صالحة لا يتجاوز حجمها 6 ميجابايت.'));return;}
+  const button=document.getElementById('podSubmitBtn');button.disabled=true;setError('podError',tr('Uploading proof securely…','جارٍ رفع الإثبات بشكل آمن…'));
+  const uploaded=[];
+  try{
+    const signature=await signatureBlob();
+    const signaturePath=shipment.dbId+'/'+podFileId()+'-signature.png';
+    const sigUpload=await sb.storage.from(POD_BUCKET).upload(signaturePath,signature,{contentType:'image/png',cacheControl:'3600',upsert:false});
+    if(sigUpload.error)throw sigUpload.error;uploaded.push(signaturePath);
+    let photoPath=null;
+    if(photo){
+      const ext=photo.type==='image/jpeg'?'jpg':photo.type==='image/png'?'png':'webp';
+      photoPath=shipment.dbId+'/'+podFileId()+'-photo.'+ext;
+      const photoUpload=await sb.storage.from(POD_BUCKET).upload(photoPath,photo,{contentType:photo.type,cacheControl:'3600',upsert:false});
+      if(photoUpload.error)throw photoUpload.error;uploaded.push(photoPath);
+    }
+    const {error}=await sb.rpc('hls_submit_delivery_proof',{p_shipment_id:shipment.dbId,p_received_by:receivedBy,p_signature_path:signaturePath,p_delivery_note:note||null,p_photo_path:photoPath});
+    if(error)throw error;
+    uploaded.length=0; // the database now references these private files
+    closePOD();
+    await loadShipments();refresh();
+    await showDetails(shipment.id);
+  }catch(ex){
+    if(uploaded.length){try{await sb.storage.from(POD_BUCKET).remove(uploaded);}catch(cleanupError){/* orphan cleanup may require admin review */}}
+    setError('podError',friendlyError(ex));
+  }finally{button.disabled=false;}
 }
 
-function saveSettings(){
-['company','phone','email'].forEach(id=>{
-localStorage.setItem(
-{id:'',company:'companyName',phone:'companyPhone',email:'companyEmail'}[id],
-document.getElementById(id).value
-);
-});
-alert('Settings saved');
+function openAssign(id){if(roleNow!=='admin')return;const s=findShipment(id);if(!s)return;editingId=id;const sel=document.getElementById('assignDriver');sel.innerHTML='<option value="">'+tr('Unassigned','غير معين')+'</option>'+drivers.filter(d=>d.is_active).map(d=>'<option value="'+esc(d.id)+'">'+esc(d.full_name)+' ('+esc(d.driver_code)+')</option>').join('');sel.value=s.driverId||'';document.getElementById('assignTracking').textContent=id+' · '+tr('Current driver: ','السائق الحالي: ')+s.driver;setError('assignError','');document.getElementById('assignModal').classList.add('open');}
+function closeAssign(){document.getElementById('assignModal').classList.remove('open');editingId=null;}
+async function saveAssignment(){if(roleNow!=='admin')return;const s=findShipment(editingId);if(!s)return;const newId=val('assignDriver');if(newId&&!drivers.some(d=>d.id===newId&&d.is_active)){setError('assignError',tr('Select an active registered driver.','اختر سائقاً مسجلاً ونشطاً.'));return;}try{const {error}=await sb.rpc('hls_reassign_shipment',{p_shipment_id:s.dbId,p_new_driver_id:newId||null});if(error)throw error;closeAssign();await loadShipments();renderShipments();refresh();}catch(e){setError('assignError',friendlyError(e));}}
+function printShipment(id){const s=findShipment(id);if(!canAccessShipment(s))return;const w=window.open('','_blank');if(!w){alert(tr('Allow pop-ups to print this shipment.','اسمح بالنوافذ المنبثقة لطباعة هذه الشحنة.'));return;}const rows=[['Tracking ID',s.id],['Sender',s.sender],['Sender phone',s.senderPhone],['Recipient',s.recipient],['Recipient phone',s.recipientPhone],['Destination city',s.city],['Delivery address / notes',s.address||'—'],['Driver',s.driver],['Parcel type',s.type],['COD (SAR)',s.cod.toFixed(2)],['Status',s.status],['Created',new Date(s.created).toLocaleString()]];w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Shipment '+esc(s.id)+'</title><style>body{font:14px Arial,sans-serif;margin:25px;color:#111}h1{font-size:20px}.tracking{font-size:22px;font-weight:bold;border:2px dashed #555;padding:12px;margin:15px 0}table{width:100%;border-collapse:collapse}td{padding:9px;border:1px solid #aaa}td:first-child{font-weight:bold;width:34%}</style></head><body><h1>HOMELAND LOGISTICS SERVICE COMPANY</h1><div>SHIPMENT WAYBILL</div><div class="tracking">'+esc(s.id)+'</div><table>'+rows.map(r=>'<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>').join('')+'</table><p><button onclick="window.print()">Print</button></p><script>window.onload=()=>window.print()<\/script></body></html>');w.document.close();}
+function shareWhatsApp(id){const s=findShipment(id);if(!canAccessShipment(s))return;const status=language==='ar'?(STATUS_AR[s.status]||s.status):s.status;const message=language==='ar'?'تحديث شحنة HOMELAND LOGISTICS\nرقم التتبع: '+s.id+'\nالوجهة: '+s.city+'\nالحالة: '+status:'HOMELAND LOGISTICS shipment update\nTracking ID: '+s.id+'\nDestination: '+s.city+'\nStatus: '+status;window.open('https://wa.me/?text='+encodeURIComponent(message),'_blank','noopener');}
+function closeDetails(){document.getElementById('detailModal').classList.remove('open');}
+function trackParcel(){const id=val('trackInput').toUpperCase(),s=visibleShipments().find(x=>x.id.toUpperCase()===id),out=document.getElementById('trackResult');if(!s){out.innerHTML='<span class="error">'+tr('No shipment found in your permitted records.','لم يتم العثور على الشحنة ضمن السجلات المسموح لك بالوصول إليها.')+'</span>';return;}out.innerHTML='<h3>'+esc(s.id)+'</h3><p><b>'+tr('Status','الحالة')+':</b> '+esc(language==='ar'?(STATUS_AR[s.status]||s.status):s.status)+'</p><p><b>'+tr('Destination','الوجهة')+':</b> '+esc(s.city)+'</p><p><b>'+tr('Recipient','المستلم')+':</b> '+esc(s.recipient)+'</p><p><b>'+tr('Driver','السائق')+':</b> '+esc(s.driver)+'</p><p class="small muted">'+tr('Internal staff tracking only.','تتبع داخلي للموظفين فقط.')+'</p>';}
+async function reloadData(){if(!sb||!roleNow)return;try{await loadDrivers();await loadShipments();renderDriverOptions();renderDriverFilter();if(document.getElementById('drivers').classList.contains('show'))renderDrivers();refresh();setText('syncState',tr('Updated: ','آخر تحديث: ')+new Date().toLocaleTimeString());}catch(e){alert(friendlyError(e));}}
+function refresh(){const a=visibleShipments(),del=a.filter(x=>x.status==='Delivered').length,trans=a.filter(x=>['Picked Up','In Transit','Out for Delivery'].includes(x.status)).length,needs=a.filter(x=>['Booked','Delivery Failed','Returned'].includes(x.status)).length;setText('totalCount',a.length);setText('deliveredCount',del);setText('transitCount',trans);setText('pendingCount',needs);if(roleNow==='admin'){setText('reportTotal',shipments.length);setText('reportDelivered',shipments.filter(x=>x.status==='Delivered').length);setText('reportOther',shipments.filter(x=>x.status!=='Delivered').length);}if(document.getElementById('shipments').classList.contains('show'))renderShipments();}
+function copyText(t){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>alert(tr('Copied: ','تم النسخ: ')+t)).catch(()=>prompt(tr('Copy this tracking ID:','انسخ رقم التتبع:'),t));}else prompt(tr('Copy this tracking ID:','انسخ رقم التتبع:'),t);}
+function exportCSV(){if(roleNow!=='admin')return;const a=shipments,rows=[['Tracking ID','Sender','Sender Phone','Recipient','Recipient Phone','City','Driver','Type','COD SAR','Status','Created'],...a.map(x=>[x.id,x.sender,x.senderPhone,x.recipient,x.recipientPhone,x.city,x.driver,x.type,x.cod,x.status,x.created])];const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n'),blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='HLS_Shipment_Report.csv';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function renderDriverOptions(){const sel=document.getElementById('driver');if(!sel)return;const current=sel.value;sel.innerHTML='<option value="">'+tr('Unassigned','غير معين')+'</option>'+drivers.filter(d=>d.is_active).map(d=>'<option value="'+esc(d.id)+'">'+esc(d.full_name)+' ('+esc(d.driver_code)+')</option>').join('');if([...sel.options].some(o=>o.value===current))sel.value=current;}
+function renderDriverFilter(){const sel=document.getElementById('driverFilter');if(!sel)return;const current=sel.value;sel.innerHTML='<option value="">'+tr('All drivers','كل السائقين')+'</option>'+drivers.map(d=>'<option value="'+esc(d.id)+'">'+esc(d.full_name)+' ('+esc(d.driver_code)+')</option>').join('');if([...sel.options].some(o=>o.value===current))sel.value=current;}
+async function inviteDriver(e){
+  e.preventDefault();if(roleNow!=='admin')return;
+  const name=val('driverName'),phone=val('driverPhone'),email=val('driverEmail').toLowerCase();
+  setError('driverError','');setText('driverSuccess','');
+  if(name.length<2){setError('driverError',tr('Enter a valid driver name.','أدخل اسم سائق صالحاً.'));return;}
+  if(phone&&!phoneValid(phone)){setError('driverError',tr('Phone must contain 9–15 digits.','يجب أن يحتوي الهاتف على 9 إلى 15 رقماً.'));return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){setError('driverError',tr('Enter a valid email address.','أدخل بريداً إلكترونياً صالحاً.'));return;}
+  const submit=e.target.querySelector('button[type="submit"]');submit.disabled=true;
+  try{
+    const {data,error}=await sb.functions.invoke('admin-invite-driver',{body:{fullName:name,phone:phone||null,email}});
+    if(error)throw error;
+    e.target.reset();
+    await loadDrivers();renderDrivers();renderDriverOptions();renderDriverFilter();
+    setText('driverSuccess',tr('Invitation sent to ','تم إرسال الدعوة إلى ')+email+' · '+tr('Driver code: ','رمز السائق: ')+(data?.driverCode||''));
+  }catch(ex){setError('driverError',friendlyError(ex));}
+  finally{submit.disabled=false;}
 }
-
-function clearAll(){
-if(confirm('Are you sure? All ERP records will be deleted.')){
-Object.keys(data).forEach(k=>{data[k]=[];save(k)});
-dashboard();
-alert('Records cleared');
-}
-}
-
-dashboard();
+function renderDrivers(){const body=document.getElementById('driverRows');body.innerHTML=drivers.map(d=>{const count=shipments.filter(x=>x.driverId===d.id&&!['Delivered','Returned'].includes(x.status)).length;return '<tr><td>'+esc(d.driver_code)+'</td><td>'+esc(d.full_name)+'</td><td>'+esc(d.email||'—')+'</td><td>'+esc(d.phone||'—')+'</td><td>'+count+'</td><td><span class="tag '+(d.is_active?'':'failed')+'">'+(d.is_active?tr('Active','نشط'):tr('Inactive','غير نشط'))+'</span></td><td><button class="btn '+(d.is_active?'danger':'secondary')+'" onclick="toggleDriver(\''+esc(d.id)+'\')">'+(d.is_active?tr('Deactivate','تعطيل'):tr('Activate','تفعيل'))+'</button></td></tr>';}).join('');}
+async function toggleDriver(id){if(roleNow!=='admin')return;const d=drivers.find(x=>x.id===id);if(!d)return;try{const {error}=await sb.from('hls_drivers').update({is_active:!d.is_active}).eq('id',id);if(error)throw error;d.is_active=!d.is_active;renderDrivers();renderDriverOptions();renderDriverFilter();}catch(e){alert(friendlyError(e));}}
+function toggleLang(){language=language==='en'?'ar':'en';document.documentElement.lang=language;document.documentElement.dir=language==='ar'?'rtl':'ltr';document.querySelectorAll('[data-en][data-ar]').forEach(el=>{el.textContent=el.dataset[language];});const label=language==='en'?'العربية':'English';const topLang=document.getElementById('langBtn'),loginLang=document.getElementById('loginLangBtn');if(topLang)topLang.textContent=label;if(loginLang)loginLang.textContent=label;const active=document.querySelector('.page.show');if(active)document.getElementById('pageTitle').textContent=active.querySelector('h1')?.textContent||'';renderDriverFilter();renderDriverOptions();if(active?.id==='shipments')renderShipments();if(active?.id==='drivers')renderDrivers();if(active?.id==='tracking'&&val('trackInput'))trackParcel();}
+window.addEventListener('DOMContentLoaded',restoreSession);
 </script>
 </body>
 </html>

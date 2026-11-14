@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10243a">
+<title>HOMELAND LOGISTICS | Customer Tracking</title>
+<style>
+:root{--navy:#10243a;--blue:#1769aa;--bg:#f3f6fa;--line:#e1e8ef;--muted:#64748b;--green:#137a52;--amber:#98600b;--red:#b42318;--white:#fff}
+*{box-sizing:border-box}html{font-family:Arial,Helvetica,sans-serif}body{margin:0;background:var(--bg);color:#1d2b39;font-size:15px}.wrap{max-width:760px;margin:0 auto;padding:22px 16px 40px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 20px}.brand{font-size:19px;font-weight:800;color:var(--navy);line-height:1.35}.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:4px}.lang{border:1px solid var(--line);background:#fff;padding:9px 12px;border-radius:8px;cursor:pointer}.panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px;box-shadow:0 12px 32px #10243a0b}.panel h1{font-size:23px;margin:0 0 7px}.muted{color:var(--muted);line-height:1.55}.form{display:flex;gap:9px;margin-top:20px}.form input{flex:1;min-width:0;padding:13px;border:1px solid #d2dce6;border-radius:9px;font:inherit;text-transform:uppercase;letter-spacing:.4px}.form input:focus{outline:2px solid #1769aa33;border-color:var(--blue)}button{font:inherit;cursor:pointer}.primary{border:0;border-radius:9px;background:var(--blue);color:#fff;padding:12px 17px;font-weight:700}.primary:disabled{opacity:.55;cursor:wait}.error{min-height:20px;margin-top:10px;color:var(--red);font-size:13px}.result{margin-top:18px}.result-card{border:1px solid var(--line);border-radius:12px;padding:17px;background:#fff}.result-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}.tracking{font-size:17px;font-weight:800;letter-spacing:.4px;overflow-wrap:anywhere}.status{display:inline-block;border-radius:20px;padding:7px 11px;background:#eef2f6;color:#425466;font-size:12px;font-weight:700}.status.delivered{background:#e7f6ef;color:var(--green)}.status.failed,.status.returned{background:#fff0ef;color:var(--red)}.status.transit,.status.out{background:#fff3df;color:var(--amber)}.summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}.summary-item{padding:12px;background:#f8fafc;border-radius:9px;min-width:0}.label{font-size:11px;color:var(--muted);margin-bottom:6px}.value{font-weight:700;overflow-wrap:anywhere}.history{margin-top:21px}.history h2{font-size:15px;margin:0 0 13px}.timeline{list-style:none;padding:0;margin:0}.timeline li{position:relative;margin:0 0 0 7px;padding:0 0 17px 22px;border-left:2px solid #dce5ed}.timeline li:last-child{border-left-color:transparent;padding-bottom:0}.timeline li:before{content:"";position:absolute;left:-7px;top:1px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 1px var(--blue)}.timeline time{display:block;color:var(--muted);font-size:11px;margin-top:4px}.notice{margin-top:17px;padding:12px 13px;border:1px solid #cfe1f1;background:#f2f8fd;border-radius:9px;color:#315d7d;font-size:12px;line-height:1.6}.footer{text-align:center;color:var(--muted);font-size:11px;line-height:1.6;margin:18px 8px 0}.hidden{display:none!important}[dir=rtl] .timeline li{margin:0 7px 0 0;padding:0 22px 17px 0;border-left:0;border-right:2px solid #dce5ed}[dir=rtl] .timeline li:last-child{border-right-color:transparent}[dir=rtl] .timeline li:before{left:auto;right:-7px}[dir=rtl] .form input{text-align:right;direction:ltr}@media(max-width:560px){.wrap{padding:14px 12px 28px}.panel{padding:17px}.form{flex-direction:column}.form .primary{width:100%}.summary{grid-template-columns:1fr}.result-head{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">HOMELAND LOGISTICS<small>SERVICE COMPANY · SAUDI ARABIA</small></div>
+    <button class="lang" id="langButton" type="button">العربية</button>
+  </header>
+  <main class="panel">
+    <h1 data-en="Track your shipment" data-ar="تتبع شحنتك">Track your shipment</h1>
+    <p class="muted" data-en="Enter the tracking ID provided by HOMELAND LOGISTICS to view the latest shipment status." data-ar="أدخل رقم التتبع المقدم من شركة هوم لاند للخدمات اللوجستية لمعرفة آخر حالة للشحنة.">Enter the tracking ID provided by HOMELAND LOGISTICS to view the latest shipment status.</p>
+    <form class="form" id="trackingForm">
+      <input id="trackingInput" type="text" maxlength="43" autocomplete="off" autocapitalize="characters" spellcheck="false" required placeholder="HLS-YYMMDD-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" aria-label="Tracking ID">
+      <button class="primary" id="trackButton" type="submit" data-en="Track shipment" data-ar="تتبع الشحنة">Track shipment</button>
+    </form>
+    <div class="error" id="message" role="status" aria-live="polite"></div>
+    <section class="result hidden" id="result" aria-live="polite"></section>
+    <div class="notice" data-en="Privacy: this public page displays only the tracking ID, shipment status, destination city and status timestamps. It does not display customer names, phone numbers, street addresses, COD amounts, driver details or delivery proof. New V4 tracking IDs are required for this portal." data-ar="الخصوصية: تعرض هذه الصفحة العامة رقم التتبع وحالة الشحنة ومدينة الوجهة وأوقات تحديث الحالة فقط. لا تعرض أسماء العملاء أو أرقام الهواتف أو عناوين الشوارع أو مبالغ الدفع عند الاستلام أو بيانات السائق أو إثبات التسليم. يلزم استخدام أرقام التتبع الجديدة من V4 لهذه البوابة.">Privacy: this public page displays only the tracking ID, shipment status, destination city and status timestamps. It does not display customer names, phone numbers, street addresses, COD amounts, driver details or delivery proof. New V4 tracking IDs are required for this portal.</div>
+  </main>
+  <footer class="footer" data-en="HOMELAND LOGISTICS SERVICE COMPANY · Customer tracking portal" data-ar="شركة هوم لاند للخدمات اللوجستية · بوابة تتبع العملاء">HOMELAND LOGISTICS SERVICE COMPANY · Customer tracking portal</footer>
+</div>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+'use strict';
+let language='en';
+let client=null;
+const statusLabels={
+  'Booked':['Booked','تم الحجز'],
+  'Picked Up':['Picked Up','تم الاستلام'],
+  'In Transit':['In Transit','قيد النقل'],
+  'Out for Delivery':['Out for Delivery','خرج للتسليم'],
+  'Delivered':['Delivered','تم التسليم'],
+  'Delivery Failed':['Delivery Failed','فشل التسليم'],
+  'Returned':['Returned','تم الإرجاع']
+};
+function tr(en,ar){return language==='ar'?ar:en;}
+function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function isSecretKey(key){
+  if(/^sb_secret_/i.test(key))return true;
+  const parts=key.split('.');
+  if(parts.length===3){
+    try{let body=parts[1].replace(/-/g,'+').replace(/_/g,'/');body+='='.repeat((4-body.length%4)%4);const payload=JSON.parse(atob(body));return payload.role==='service_role'||payload.role==='supabase_admin';}catch(e){return false;}
+  }
+  return false;
+}
+function getClient(){
+  if(client)return client;
+  const cfg=window.HLS_SUPABASE_CONFIG||{};
+  const url=String(cfg.url||'').replace(/\/$/,'');
+  const key=String(cfg.publishableKey||'');
+  let parsed;
+  try{parsed=new URL(url);}catch(e){throw new Error(tr('The portal is not configured yet. Add your Supabase URL and publishable key to config.js.','لم يتم إعداد البوابة بعد. أضف رابط Supabase ومفتاح النشر إلى ملف config.js.'));}
+  if(parsed.protocol!=='https:'||parsed.username||parsed.password||parsed.search||parsed.hash)throw new Error(tr('The Supabase project URL is invalid.','رابط مشروع Supabase غير صالح.'));
+  if(!key||key.length<20||isSecretKey(key))throw new Error(tr('A Supabase publishable/anon key is required. Secret keys are blocked.','يلزم مفتاح Supabase للنشر أو anon. المفاتيح السرية محظورة.'));
+  if(!window.supabase||typeof window.supabase.createClient!=='function')throw new Error(tr('Supabase client did not load. Check your internet connection and reload.','لم يتم تحميل مكتبة Supabase. تحقق من اتصال الإنترنت وأعد التحميل.'));
+  client=window.supabase.createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+  return client;
+}
+function formatDate(value){
+  if(!value)return '—';
+  const d=new Date(value);if(Number.isNaN(d.getTime()))return '—';
+  return new Intl.DateTimeFormat(language==='ar'?'ar-SA':'en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Riyadh'}).format(d);
+}
+function statusLabel(value){const pair=statusLabels[value];return pair?pair[language==='ar'?1:0]:String(value||'');}
+function statusClass(value){if(value==='Delivered')return 'delivered';if(value==='Delivery Failed'||value==='Returned')return 'failed';if(value==='In Transit'||value==='Out for Delivery')return 'transit';return '';}
+function renderShipment(row){
+  const history=Array.isArray(row.status_history)?row.status_history:[];
+  const historyHtml=history.map(item=>`<li><b>${esc(statusLabel(item.status))}</b><time>${esc(formatDate(item.at))}</time></li>`).join('');
+  const cls=statusClass(row.status);
+  document.getElementById('result').innerHTML=`
+    <div class="result-card">
+      <div class="result-head">
+        <div><div class="label">${tr('Tracking ID','رقم التتبع')}</div><div class="tracking" dir="ltr">${esc(row.tracking_number)}</div></div>
+        <span class="status ${cls}">${esc(statusLabel(row.status))}</span>
+      </div>
+      <div class="summary">
+        <div class="summary-item"><div class="label">${tr('Destination city','مدينة الوجهة')}</div><div class="value">${esc(row.destination_city)}</div></div>
+        <div class="summary-item"><div class="label">${tr('Last updated','آخر تحديث')}</div><div class="value">${esc(formatDate(row.updated_at))}</div></div>
+        <div class="summary-item"><div class="label">${tr('Booked on','تاريخ الحجز')}</div><div class="value">${esc(formatDate(row.created_at))}</div></div>
+      </div>
+      <div class="history"><h2>${tr('Shipment progress','مراحل الشحنة')}</h2><ol class="timeline">${historyHtml||`<li>${tr('No status history is available.','لا يتوفر سجل للحالة.')}</li>`}</ol></div>
+    </div>`;
+  document.getElementById('result').classList.remove('hidden');
+}
+async function trackShipment(event){
+  event.preventDefault();
+  const input=document.getElementById('trackingInput');
+  const button=document.getElementById('trackButton');
+  const message=document.getElementById('message');
+  const result=document.getElementById('result');
+  const tracking=String(input.value||'').trim().toUpperCase();
+  message.textContent='';result.classList.add('hidden');
+  if(!/^HLS-[0-9]{6}-[0-9A-F]{32}$/.test(tracking)){
+    message.textContent=tr('Enter the complete tracking ID printed on your shipment receipt.','أدخل رقم التتبع الكامل المطبوع على إيصال الشحنة.');
+    return;
+  }
+  button.disabled=true;button.textContent=tr('Checking…','جارٍ التحقق…');
+  try{
+    const sb=getClient();
+    const {data,error}=await sb.rpc('hls_public_track_shipment',{p_tracking_number:tracking});
+    if(error)throw error;
+    const row=Array.isArray(data)?data[0]:data;
+    if(!row){message.textContent=tr('No shipment was found. Check the tracking ID and try again.','لم يتم العثور على الشحنة. تحقق من رقم التتبع وحاول مرة أخرى.');return;}
+    renderShipment(row);
+  }catch(error){
+    message.textContent=error?.message?.includes('not configured')?error.message:tr('Tracking is temporarily unavailable. Please try again later.','التتبع غير متاح مؤقتاً. يرجى المحاولة لاحقاً.');
+  }finally{
+    button.disabled=false;button.textContent=tr('Track shipment','تتبع الشحنة');
+  }
+}
+function toggleLanguage(){
+  language=language==='en'?'ar':'en';
+  document.documentElement.lang=language;
+  document.documentElement.dir=language==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-en][data-ar]').forEach(el=>{el.textContent=el.dataset[language];});
+  document.getElementById('langButton').textContent=language==='en'?'العربية':'English';
+  const current=document.getElementById('result');
+  if(!current.classList.contains('hidden')&&window.lastPublicShipment)renderShipment(window.lastPublicShipment);
+  const message=document.getElementById('message');
+  if(message.textContent)message.textContent=tr('Tracking is temporarily unavailable. Please try again later.','التتبع غير متاح مؤقتاً. يرجى المحاولة لاحقاً.');
+  document.getElementById('trackButton').textContent=tr('Track shipment','تتبع الشحنة');
+}
+const originalRenderShipment=renderShipment;
+renderShipment=function(row){window.lastPublicShipment=row;originalRenderShipment(row);};
+document.getElementById('trackingForm').addEventListener('submit',trackShipment);
+document.getElementById('langButton').addEventListener('click',toggleLanguage);
+</script>
+</body>
+</html>
